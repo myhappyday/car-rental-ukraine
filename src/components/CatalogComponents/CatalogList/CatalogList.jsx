@@ -33,19 +33,45 @@ const CatalogList = () => {
     <>
       {!error && cars && cars.length > 0 && (
         <ul>
-          {cars.map(({ id, make, model, year, img }) => (
-            <li
-              key={nanoid(5)}
-              id={id}
-              // make={make}
-              // model={model}
-            >
-              <p>
-                {make}: {model}, {year}
-              </p>
-              <img src={img} alt={`${make} ${model}, ${year}`} width="320" />
-            </li>
-          ))}
+          {cars.map(
+            ({
+              id,
+              year,
+              make,
+              model,
+              type,
+              img,
+              functionalities,
+              rentalPrice,
+              rentalCompany,
+              address,
+              mileage,
+            }) => (
+              <li
+                key={nanoid(5)}
+                id={id}
+                // make={make}
+                // model={model}
+              >
+                <img
+                  src={img}
+                  alt={`${make} ${model}, ${year}`}
+                  width="274"
+                  // height="268"
+                />
+                <p>
+                  {make} {model}, {year}
+                </p>
+                <p>{rentalPrice}</p>
+                <p>{address}</p>
+                <p>{rentalCompany}</p>
+                <p>{type}</p>
+                <p>{model}</p>
+                <p>{mileage}</p>
+                <p>{functionalities[0]}</p>
+              </li>
+            )
+          )}
         </ul>
       )}
       {/* {error && (
