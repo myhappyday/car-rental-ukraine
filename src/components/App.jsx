@@ -1,16 +1,21 @@
-export const App = () => {
+import { ToastContainer } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
+import CatalogList from './CatalogComponents/CatalogList';
+
+const App = () => {
   return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React homework template
+    <div>
+      Car rental UA
+      <CatalogList />
+      <ToastContainer
+        position="top-right"
+        autoClose={3000}
+        theme="colored"
+        pauseOnHover
+      />
     </div>
   );
 };
+
+export default App;
