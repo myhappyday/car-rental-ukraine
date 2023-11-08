@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { nanoid } from 'nanoid';
 import { toast } from 'react-toastify';
 
+import { ListStyled } from './CatalogList.styled';
+
 import { fetchCars } from '../../../services/fetchAPI';
+import CatalogListItem from '../CatalogListItem';
 
 const CatalogList = () => {
   const [cars, setCars] = useState([]);
@@ -14,10 +17,11 @@ const CatalogList = () => {
     const fetchCatalogCars = async () => {
       try {
         const response = await fetchCars();
-        console.log('response: ', response);
 
         if (response.length === 0) setError(true);
         setCars(response);
+
+        // console.log('response: ', response);
       } catch (error) {
         setError(true);
         // console.error(error.message);
@@ -32,47 +36,11 @@ const CatalogList = () => {
   return (
     <>
       {!error && cars && cars.length > 0 && (
-        <ul>
-          {cars.map(
-            ({
-              id,
-              year,
-              make,
-              model,
-              type,
-              img,
-              functionalities,
-              rentalPrice,
-              rentalCompany,
-              address,
-              mileage,
-            }) => (
-              <li
-                key={nanoid(5)}
-                id={id}
-                // make={make}
-                // model={model}
-              >
-                <img
-                  src={img}
-                  alt={`${make} ${model}, ${year}`}
-                  width="274"
-                  // height="268"
-                />
-                <p>
-                  {make} {model}, {year}
-                </p>
-                <p>{rentalPrice}</p>
-                <p>{address}</p>
-                <p>{rentalCompany}</p>
-                <p>{type}</p>
-                <p>{model}</p>
-                <p>{mileage}</p>
-                <p>{functionalities[0]}</p>
-              </li>
-            )
-          )}
-        </ul>
+        <ListStyled>
+          {cars.map(car => (
+            <CatalogListItem key={nanoid(5)} car={car} />
+          ))}
+        </ListStyled>
       )}
       {/* {error && (
         <ImageErrorView
