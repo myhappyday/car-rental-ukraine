@@ -11,6 +11,9 @@ const CatalogList = () => {
   const [cars, setCars] = useState([]);
   const [error, setError] = useState(null);
 
+  // const limitOnPage = 12;
+  // const [currentIndex, setCurrentIndex] = useState(limitOnPage)
+
   useEffect(() => {
     setError(false);
 
